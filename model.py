@@ -1,4 +1,4 @@
-#importing important libraries
+#importing libraries
 import numpy as np                    
 import pandas as pd                   
 import argparse                       
@@ -87,7 +87,7 @@ class FF_NueralNetwork:
             self.weights.append(weight)
             self.biases.append(bias)
             
-    #let us define activation functions - tanh and sigmoid
+    
 
     #sigmoid function
     def sigmoid(self,x):                                               
@@ -119,7 +119,7 @@ class FF_NueralNetwork:
             self.biases[i] -= lr*self.grad_biases[i]
     
             
-    #Adaptive momentum optimizer or 'adam'
+    #'adam'
     def adam_optm(self,lr):
         beta1 = 0.9
         beta2 = 0.999
@@ -134,7 +134,7 @@ class FF_NueralNetwork:
             self.weights[i] -= lr*self.velocities_corrected[i]/(np.sqrt(self.squared_velocities_corrected[i]) + epsilon)
             self.biases[i] -= lr*self.grad_biases[i]
             
-    #defining forward mode of my network
+
     def forward(self,x):
         activations = [x]
         for i in range(len(self.weights)):
@@ -185,7 +185,7 @@ class FF_NueralNetwork:
             grad_biases[i] = db
             activations.append(dA_prev)
             
-        #updating parameters using optimizer algorithms
+
         if optm == "gd":
             self.gradient_descent(lr)
         elif optm == "momentum":
@@ -198,9 +198,9 @@ class FF_NueralNetwork:
         num_examples = x.shape[0]
         num_batches = num_examples // batch_size
         
-        #starting training
+       
         for epoch in range(num_epochs):
-            #shuffle the data for more accuracy
+            #shuffle the data 
             indices = np.random.permutation(num_examples)
             x = x[indices]
             y = y[indices]
